@@ -1,0 +1,54 @@
+import java.util.*;
+import java.lang.*;
+class Employee{
+    String name;
+    int salary;
+    int age;
+    Employee(String na,int sa,int ag){
+        name=na;
+        salary=sa;
+        age=ag;
+    }
+} 
+class Age implements Comparator{
+    public int compare(Object o1,Object o2){
+        Employee s1 = (Employee)o1;
+        Employee s2 = (Employee)o2;
+        
+        if(s1.age>s2.age)
+            return 1;
+        else if(s1.age<s2.age)
+            return -1;
+        else
+            return 0;
+    }
+}
+
+class Name implements Comparator{
+    public int compare(Object o1,Object o2){
+        Employee s1 = (Employee)o1;
+        Employee s2 = (Employee)o2;
+        
+        return s1.name.compareTo(s2.name);
+    }
+}
+
+public class MyClass {
+    public static void main(String args[]) {
+      ArrayList<Employee> al = new ArrayList<Employee> ();
+      al.add(new Employee("Amit",8000,19));
+      al.add(new Employee("Bdsvkl",9000,23));
+      al.add(new Employee("Gippy",15000,22));
+      al.add(new Employee("Ajay",22000,21));
+      
+      Collections.sort(al,new Age());
+      for(Employee i: al){
+          System.out.println(i.age+" "+i.name+" "+i.salary);
+      }
+      System.out.println();
+      Collections.sort(al,new Name());
+      for(Employee i: al){
+          System.out.println(i.age+" "+i.name+" "+i.salary);
+      }
+    }
+}
